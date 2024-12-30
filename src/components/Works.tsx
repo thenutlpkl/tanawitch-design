@@ -34,12 +34,12 @@ const Works = () => {
             <a
               key={project.name}
               href={project.link}
-              className="aspect-square bg-card rounded-3xl p-8 flex items-center justify-center transition-transform hover:-translate-y-1"
+              className="aspect-square bg-card/50 rounded-3xl p-8 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hologram-glow backdrop-blur-sm border border-primary/10"
             >
               <img
                 src={project.logo}
                 alt={project.name}
-                className="w-full h-auto"
+                className="w-full h-auto opacity-80 hover:opacity-100 transition-opacity"
               />
             </a>
           ))}
