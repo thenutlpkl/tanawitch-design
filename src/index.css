@@ -74,14 +74,4 @@
   content: '';
   @apply absolute inset-0 rounded-3xl;
   background: linear-gradient(45deg, transparent, rgba(76, 175, 229, 0.1), transparent);
-  animation: hologram-scan 3s linear infinite;
-}
-
-@keyframes hologram-scan {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
 }
