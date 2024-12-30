@@ -1,21 +1,25 @@
 const projects = [
   {
     name: "Peak",
+    description: "A fitness tracking application",
     logo: "https://placehold.co/100x100",
     link: "#"
   },
   {
     name: "Chef App",
+    description: "Recipe management platform",
     logo: "https://placehold.co/100x100",
     link: "#"
   },
   {
     name: "Health App",
+    description: "Wellness monitoring system",
     logo: "https://placehold.co/100x100",
     link: "#"
   },
   {
     name: "CP Origin",
+    description: "Creative portfolio showcase",
     logo: "https://placehold.co/100x100",
     link: "#"
   }
@@ -34,13 +38,20 @@ const Works = () => {
             <a
               key={project.name}
               href={project.link}
-              className="aspect-square bg-card/50 rounded-3xl p-8 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hologram-glow backdrop-blur-sm border border-primary/10"
+              className="group relative aspect-square bg-card/50 rounded-3xl p-8 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hologram-glow backdrop-blur-sm border border-primary/10 overflow-hidden"
             >
               <img
                 src={project.logo}
                 alt={project.name}
-                className="w-full h-auto opacity-80 hover:opacity-100 transition-opacity"
+                className="w-full h-auto opacity-80 group-hover:opacity-30 transition-opacity duration-300"
               />
+              
+              {/* Hover overlay with text */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+                <h4 className="relative z-10 text-lg font-medium text-white mb-2">{project.name}</h4>
+                <p className="relative z-10 text-sm text-white/80 px-4 text-center">{project.description}</p>
+              </div>
             </a>
           ))}
         </div>
