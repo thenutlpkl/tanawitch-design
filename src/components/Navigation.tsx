@@ -29,7 +29,7 @@ const Navigation = () => {
           <div className="flex items-center gap-4">
             <Button 
               size="sm" 
-              className="bg-[#FEC6A1]/20 text-[#FEC6A1] hover:bg-[#FEC6A1]/30 backdrop-blur-sm border border-[#FEC6A1]/20 rounded-full px-6"
+              className="bg-[#FEC6A1]/20 text-[#FEC6A1] hover:bg-gradient-to-r hover:from-[#FF6C5C] hover:to-[#FFF7D3] hover:text-white backdrop-blur-sm border border-[#FEC6A1]/20 rounded-full px-6 transition-all duration-300"
             >
               Resume
             </Button>
