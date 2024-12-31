@@ -10,7 +10,7 @@
     --card-foreground: 210 40% 98%;
     --popover: 230 25% 13%;
     --popover-foreground: 210 40% 98%;
-    --primary: 199 89% 48%;
+    --primary: 24 98% 81%;
     --primary-foreground: 210 40% 98%;
     --secondary: 229 27% 19%;
     --secondary-foreground: 210 40% 98%;
@@ -22,7 +22,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 229 27% 19%;
     --input: 229 27% 19%;
-    --ring: 199 89% 48%;
+    --ring: 24 98% 81%;
     --radius: 0.5rem;
   }
 }
@@ -35,15 +35,15 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
     background-image: 
-      radial-gradient(circle at 50% 0%, rgba(76, 175, 229, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 0% 50%, rgba(76, 175, 229, 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 50% 0%, rgba(254, 198, 161, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 0% 50%, rgba(254, 198, 161, 0.05) 0%, transparent 50%);
   }
 }
 
 .gradient-card {
-  background: linear-gradient(135deg, rgba(76, 175, 229, 0.1) 0%, rgba(147, 39, 143, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(254, 198, 161, 0.1) 0%, rgba(147, 39, 143, 0.1) 100%);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(76, 175, 229, 0.2);
+  border: 1px solid rgba(254, 198, 161, 0.2);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
 }
 
