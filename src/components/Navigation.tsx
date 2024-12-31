@@ -1,15 +1,26 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Copy } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { useToast } from "@/hooks/use-toast";
 
 const Navigation = () => {
+  const { toast } = useToast();
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast({
+      description: "Copied to clipboard!",
+    });
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 flex justify-center p-4 z-50">
       <nav className="bg-background/40 backdrop-blur-lg border border-primary/10 rounded-full px-6">
         <div className="h-14 flex items-center gap-16">
           <div className="flex items-center gap-2">
             <span className="text-[#FEC6A1]">•</span>
-            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/" className="text-sm font-medium hover:text-[#FEC6A1] transition-colors">
               Tanawitch
             </Link>
           </div>
@@ -33,7 +44,19 @@ const Navigation = () => {
             >
               Resume
             </Button>
-            <Copy className="w-5 h-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Copy 
+                    onClick={handleCopy}
+                    className="w-5 h-5 text-muted-foreground hover:text-[#FEC6A1] cursor-pointer transition-colors" 
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Copy my url</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
       </nav>

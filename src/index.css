@@ -48,14 +48,14 @@
 }
 
 .nav-link {
-  @apply text-sm font-medium transition-colors hover:text-primary relative;
-  text-shadow: 0 0 10px rgba(76, 175, 229, 0.5);
+  @apply text-sm font-medium transition-colors hover:text-[#FEC6A1] relative;
+  text-shadow: 0 0 10px rgba(254, 198, 161, 0.5);
 }
 
 .nav-link::after {
   content: '';
-  @apply absolute left-0 bottom-0 w-0 h-[1px] bg-primary transition-all duration-300;
-  box-shadow: 0 0 10px rgba(76, 175, 229, 0.5);
+  @apply absolute left-0 bottom-0 w-0 h-[1px] bg-[#FEC6A1] transition-all duration-300;
+  box-shadow: 0 0 10px rgba(254, 198, 161, 0.5);
 }
 
 .nav-link:hover::after {
@@ -63,7 +63,7 @@
 }
 
 .nav-link.active {
-  @apply text-primary;
+  @apply text-[#FEC6A1];
 }
 
 .hologram-glow {
@@ -73,5 +73,5 @@
 .hologram-glow::before {
   content: '';
   @apply absolute inset-0 rounded-3xl;
-  background: linear-gradient(45deg, transparent, rgba(76, 175, 229, 0.1), transparent);
+  background: linear-gradient(45deg, transparent, rgba(254, 198, 161, 0.1), transparent);
 }
