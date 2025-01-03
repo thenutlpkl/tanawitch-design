@@ -46,7 +46,6 @@ const Works = () => {
                 className="w-full h-auto opacity-80 group-hover:opacity-30 transition-opacity duration-300"
               />
               
-              {/* Hover overlay with text */}
               <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
                 <h4 className="relative z-10 text-lg font-medium text-white mb-2">{project.name}</h4>
@@ -56,6 +55,35 @@ const Works = () => {
           ))}
         </div>
         
+        <div className="mt-16">
+          <h3 className="text-xl mb-8 font-light">
+            <span className="text-primary">sketch</span> here
+          </h3>
+          
+          <div className="gradient-card rounded-3xl p-8 relative overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <img 
+                  src="/lovable-uploads/887ba66f-f950-4db2-9622-0fe64b37c6fc.png" 
+                  alt="Sketch Design" 
+                  className="w-full h-auto rounded-2xl"
+                />
+              </div>
+              <div className="space-y-4">
+                <h4 className="text-2xl font-medium text-primary">Design Process</h4>
+                <p className="text-muted-foreground">
+                  Every great project starts with a sketch. This is where ideas come to life, 
+                  where creativity meets functionality, and where the foundation of amazing 
+                  user experiences is laid.
+                </p>
+                <button className="text-sm text-primary hover:text-primary/80 transition-colors">
+                  Learn more about my process →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="mt-8 text-center">
           <button className="text-sm text-muted-foreground hover:text-primary transition-colors">
             See more
