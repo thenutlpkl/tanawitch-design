@@ -29,7 +29,7 @@ const Works = () => {
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-5xl mx-auto">
-        <h3 className="text-xl mb-8 font-light">
+        <h3 className="text-xl mb-8 font-light text-left">
           <span className="text-primary">building</span> with love
         </h3>
         
@@ -56,7 +56,7 @@ const Works = () => {
         </div>
         
         <div className="mt-16">
-          <h3 className="text-xl mb-8 font-light">
+          <h3 className="text-xl mb-8 font-light text-left">
             <span className="text-primary">sketch</span> here
           </h3>
           
