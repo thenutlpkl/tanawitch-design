@@ -60,27 +60,8 @@ const Works = () => {
             <span className="text-primary">sketch</span> here
           </h3>
           
-          <div className="gradient-card rounded-3xl p-8 relative overflow-hidden bg-[#1a1a1a]">
-            <div className="absolute inset-0">
-              <div className="w-full h-full" style={{
-                backgroundImage: `url('/lovable-uploads/274501b1-9c53-43b9-96b2-05ccf3b5bb5a.png')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                opacity: '0.9'
-              }}></div>
-            </div>
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[300px]">
-              <div className="space-y-4">
-                <h4 className="text-2xl font-medium text-primary">What if we're...</h4>
-                <p className="text-muted-foreground">
-                  Exploring new possibilities through wireframes and sketches. 
-                  This is where innovation begins, where ideas take their first shape.
-                </p>
-                <button className="text-sm text-primary hover:text-primary/80 transition-colors">
-                  See the process →
-                </button>
-              </div>
-            </div>
+          <div className="gradient-card rounded-3xl p-8 relative overflow-hidden bg-card/50">
+            <div className="min-h-[300px]"></div>
           </div>
         </div>
 
