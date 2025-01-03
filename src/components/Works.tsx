@@ -62,11 +62,11 @@ const Works = () => {
           
           <div className="gradient-card rounded-3xl p-8 relative overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div>
+              <div className="relative w-full h-[300px]">
                 <img 
                   src="/lovable-uploads/887ba66f-f950-4db2-9622-0fe64b37c6fc.png" 
                   alt="Sketch Design" 
-                  className="w-full h-auto rounded-2xl"
+                  className="absolute inset-0 w-full h-full object-cover rounded-2xl"
                 />
               </div>
               <div className="space-y-4">
