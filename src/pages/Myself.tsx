@@ -4,11 +4,11 @@ const Myself = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 pt-32">
         <div className="max-w-5xl mx-auto space-y-16">
           {/* About Section */}
           <div className="text-center space-y-4">
-            <h2 className="text-5xl font-light bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-light bg-gradient-to-r from-[#FEC6A1] to-[#93278F] bg-clip-text text-transparent">
               About
             </h2>
             <p className="text-xl text-gray-300">
