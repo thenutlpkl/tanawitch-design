@@ -43,12 +43,12 @@ const projects = [
 
 const ProjectGrid = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 max-w-7xl mx-auto">
       {projects.map((project) => (
         <a
           key={project.name}
           href={project.link}
-          className="group relative aspect-square bg-[#1A1A1A] rounded-3xl p-8 flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-1 hologram-glow backdrop-blur-sm border border-gray-800/30 overflow-hidden"
+          className="group relative h-[300px] bg-[#1A1A1A] rounded-3xl p-8 flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-1 hologram-glow backdrop-blur-sm border border-gray-800/30 overflow-hidden"
         >
           {project.badge && (
             <span className="absolute top-4 left-4 px-2 py-1 text-xs rounded-full bg-purple-500/20 text-purple-300">
