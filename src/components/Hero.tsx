@@ -40,7 +40,7 @@ const Hero = () => {
         </div>
 
         <p className="text-lg text-muted-foreground leading-relaxed">
-          I am a lifelong learner and designer who grows my stories through designs and illustrations. With over 15 years of experience in the design industry, I strive to prove that design can solve anything while working towards creating something of my own.
+          A lifelong learner and designer who grows my stories through designs and illustrations. With over 15 years of experience in the design industry, I strive to prove that design can solve anything while working towards creating something of my own.
         </p>
       </div>
     </div>

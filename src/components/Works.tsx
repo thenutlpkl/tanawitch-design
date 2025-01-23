@@ -1,3 +1,5 @@
+import React, { useRef, useEffect, useState } from 'react';
+
 const projects = [
   {
     name: "Peak",
@@ -26,6 +28,55 @@ const projects = [
 ];
 
 const Works = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isDrawing, setIsDrawing] = useState(false);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext('2d');
+    if (canvas && context) {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+
+      const startDrawing = (e: MouseEvent) => {
+        context.beginPath();
+        context.moveTo(e.offsetX, e.offsetY);
+        setIsDrawing(true);
+      };
+
+      const draw = (e: MouseEvent) => {
+        if (!isDrawing) return;
+        context.lineTo(e.offsetX, e.offsetY);
+        context.stroke();
+      };
+
+      const stopDrawing = () => {
+        context.closePath();
+        setIsDrawing(false);
+      };
+
+      canvas.addEventListener('mousedown', startDrawing);
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mouseup', stopDrawing);
+      canvas.addEventListener('mouseleave', stopDrawing);
+
+      return () => {
+        canvas.removeEventListener('mousedown', startDrawing);
+        canvas.removeEventListener('mousemove', draw);
+        canvas.removeEventListener('mouseup', stopDrawing);
+        canvas.removeEventListener('mouseleave', stopDrawing);
+      };
+    }
+  }, [isDrawing]);
+
+  const clearCanvas = () => {
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext('2d');
+    if (canvas && context) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-5xl mx-auto">
@@ -61,8 +112,14 @@ const Works = () => {
           </h3>
           
           <div className="gradient-card rounded-3xl p-8 relative overflow-hidden bg-card/50">
-            <div className="min-h-[300px]"></div>
+            <canvas ref={canvasRef} className="w-full h-[300px]"></canvas>
           </div>
+        </div>
+
+        <div className="mt-8 text-center">
+          <button onClick={clearCanvas} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            Clear Sketch
+          </button>
         </div>
 
         <div className="mt-8 text-center">
