@@ -30,6 +30,7 @@
 @layer base {
   * {
     @apply border-border;
+    cursor: none;
   }
   body {
     @apply bg-background text-foreground;
@@ -38,6 +39,34 @@
       radial-gradient(circle at 50% 0%, rgba(254, 198, 161, 0.05) 0%, transparent 50%),
       radial-gradient(circle at 0% 50%, rgba(254, 198, 161, 0.05) 0%, transparent 50%);
   }
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  background: rgba(254, 198, 161, 0.3);
+  border: 2px solid rgba(254, 198, 161, 0.5);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.1s ease-out;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor.hover {
+  width: 40px;
+  height: 40px;
+  background: rgba(254, 198, 161, 0.1);
+  border: 2px solid rgba(254, 198, 161, 0.3);
+}
+
+.custom-cursor.clicking {
+  width: 16px;
+  height: 16px;
+  background: rgba(254, 198, 161, 0.5);
+  border: 2px solid rgba(254, 198, 161, 0.8);
 }
 
 .gradient-card {
