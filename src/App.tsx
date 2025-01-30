@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ParticleEffect from "./components/ParticleEffect";
 import CustomCursor from "./components/CustomCursor";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer"; // Import Footer
 import Index from "./pages/Index";
 import Myself from "./pages/Myself";
 import Works from "./pages/Works";
@@ -14,17 +16,23 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <ParticleEffect />
-      <CustomCursor />
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/myself" element={<Myself />} />
-          <Route path="/works" element={<Works />} />
-        </Routes>
-      </BrowserRouter>
+      <div className="flex flex-col min-h-screen"> {/* Wrapper for sticky footer */}
+        <ParticleEffect />
+        <CustomCursor />
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Navigation />
+          <main className="flex-grow"> {/* Main content will expand to push footer down */}
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/myself" element={<Myself />} />
+              <Route path="/works" element={<Works />} />
+            </Routes>
+          </main>
+          <Footer /> {/* Footer will always be at the bottom */}
+        </BrowserRouter>
+      </div>
     </TooltipProvider>
   </QueryClientProvider>
 );

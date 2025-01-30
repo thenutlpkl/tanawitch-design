@@ -43,12 +43,6 @@ const Navigation = () => {
                 Myself
               </Link>
             </div>
-            <div className="flex items-center gap-2">
-              {isActive('/contact') && <span className="text-[#FEC6A1]">•</span>}
-              <Link to="/contact" className="nav-link">
-                Contact
-              </Link>
-            </div>
           </div>
 
           <div className="flex items-center gap-4">

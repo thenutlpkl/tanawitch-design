@@ -1,46 +1,84 @@
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import Navigation from "@/components/Navigation";
 import ProjectGrid from "@/components/ProjectGrid";
 
 const Works = () => {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true });
+
   return (
-    <div className="min-h-screen">
+    <motion.div 
+      ref={containerRef}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 0.8 }}
+      className="min-h-screen"
+    >
       <Navigation />
       <div className="container mx-auto px-4 pt-32">
         <div className="max-w-5xl mx-auto space-y-16">
           {/* Header */}
-          <div className="text-center space-y-8">
-            <h1 className="text-7xl font-light bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+          <motion.div 
+            initial={{ y: 30, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center space-y-8"
+          >
+            <h1 className="text-2xl font-light text-[#FEC6A1]">
               Works
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-400 text-base font-light leading-relaxed max-w-2xl mx-auto">
               It has been an absolute pleasure to put my heart and soul into these projects. 
               While you're here, browse these projects.
             </p>
             <div className="flex items-center justify-center gap-2">
-              <div className="h-px bg-gray-700 flex-1 max-w-[200px]" />
-              <span className="text-gray-400">◆</span>
-              <div className="h-px bg-gray-700 flex-1 max-w-[200px]" />
+              <div className="h-px bg-[#FEC6A1]/20 flex-1 max-w-[200px]" />
+              <span className="text-[#FEC6A1]/40">◆</span>
+              <div className="h-px bg-[#FEC6A1]/20 flex-1 max-w-[200px]" />
             </div>
-          </div>
+          </motion.div>
 
           {/* Filter Bar */}
-          <div className="flex justify-center gap-2">
-            <button className="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 text-white">
+          {/* Temporarily hidden as per user request
+          <motion.div 
+            initial={{ y: 20, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="flex justify-center gap-2"
+          >
+            <motion.button 
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-2 rounded-full bg-[#FEC6A1]/10 text-[#FEC6A1]"
+            >
               All
-            </button>
-            <button className="px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 hover:text-white transition-colors">
+            </motion.button>
+            <motion.button 
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 hover:text-[#FEC6A1] hover:bg-[#FEC6A1]/5 transition-colors"
+            >
               Work
-            </button>
-            <button className="px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 hover:text-white transition-colors">
+            </motion.button>
+            <motion.button 
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 hover:text-[#FEC6A1] hover:bg-[#FEC6A1]/5 transition-colors"
+            >
               Projects
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
+          */}
 
           {/* Project Grid */}
-          <ProjectGrid />
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+          >
+            <ProjectGrid />
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

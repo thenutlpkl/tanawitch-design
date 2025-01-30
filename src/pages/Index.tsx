@@ -1,7 +1,9 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Works from "@/components/Works";
-import Contact from "@/components/Contact";
+import Footer from "@/components/Footer"; // Add this import
+
+
 
 const Index = () => {
   return (
@@ -10,7 +12,6 @@ const Index = () => {
       <main>
         <Hero />
         <Works />
-        <Contact />
       </main>
     </div>
   );
