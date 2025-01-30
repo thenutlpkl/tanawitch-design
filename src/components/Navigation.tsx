@@ -11,7 +11,7 @@ const Navigation = () => {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
-    const url = "https://tanawitchdesign.vercel.app/";
+    const url = "https://tanawitch-design.vercel.app/";
     navigator.clipboard.writeText(url);
     toast({
       description: "Copied to clipboard!",
@@ -57,7 +57,7 @@ const Navigation = () => {
             <Button 
               size="sm" 
               className="bg-[#FEC6A1]/20 text-[#FEC6A1] hover:bg-gradient-to-tr hover:from-[#FF6C5C] hover:to-[#FFF7D3] hover:text-white backdrop-blur-sm border border-[#FEC6A1]/20 rounded-full px-6 transition-all duration-500 ease-in"
-              onClick={() => window.open("https://drive.google.com/file/d/1E_tAXcLq92GkfafYiGZSY-gKcdcVXX4S/view?usp=sharing", "_blank")}
+              onClick={() => window.open("https://drive.google.com/file/d/1lZpfp1wJf_XbO1Q0jsu01AHN9FXijJro/view?usp=sharing", "_blank")}
             >
               Resume
             </Button>
