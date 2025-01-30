@@ -1,18 +1,26 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Copy } from "lucide-react";
+import { Copy, Check } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 const Navigation = () => {
   const { toast } = useToast();
   const location = useLocation();
+  const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(window.location.href);
+    const url = "https://tanawitchdesign.vercel.app/";
+    navigator.clipboard.writeText(url);
     toast({
       description: "Copied to clipboard!",
     });
+    
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000); // Show check icon for 2 seconds
   };
 
   const isActive = (path: string) => {
@@ -49,19 +57,28 @@ const Navigation = () => {
             <Button 
               size="sm" 
               className="bg-[#FEC6A1]/20 text-[#FEC6A1] hover:bg-gradient-to-tr hover:from-[#FF6C5C] hover:to-[#FFF7D3] hover:text-white backdrop-blur-sm border border-[#FEC6A1]/20 rounded-full px-6 transition-all duration-500 ease-in"
+              onClick={() => window.open("https://drive.google.com/file/d/1E_tAXcLq92GkfafYiGZSY-gKcdcVXX4S/view?usp=sharing", "_blank")}
             >
               Resume
             </Button>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Copy 
-                    onClick={handleCopy}
-                    className="w-5 h-5 text-muted-foreground hover:text-[#FEC6A1] cursor-pointer transition-colors" 
-                  />
+                  <div className="relative">
+                    {isCopied ? (
+                      <Check 
+                        className="w-5 h-5 text-green-500 animate-ping" 
+                      />
+                    ) : (
+                      <Copy 
+                        onClick={handleCopy}
+                        className="w-5 h-5 text-muted-foreground hover:text-[#FEC6A1] cursor-pointer transition-colors" 
+                      />
+                    )}
+                  </div>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Copy my url</p>
+                  <p>{isCopied ? "Copied!" : "Copy my url"}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
