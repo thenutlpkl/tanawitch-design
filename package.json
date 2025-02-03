@@ -8,10 +8,10 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=/tanawitch-design/",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview --base=/tanawitch-design/"
   },
   "dependencies": {
     "@fontsource/rubik": "^5.1.1",
@@ -46,6 +46,7 @@
     "@radix-ui/react-tooltip": "^1.1.4",
     "@supabase/supabase-js": "^2.48.1",
     "@tanstack/react-query": "^5.56.2",
+    "@types/react-router-hash-link": "^2.4.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
@@ -60,10 +61,12 @@
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
+    "react-feather": "^2.0.10",
     "react-hook-form": "^7.53.0",
     "react-lazy-load-image-component": "^1.6.3",
     "react-resizable-panels": "^2.1.3",
     "react-router-dom": "^6.26.2",
+    "react-router-hash-link": "^2.4.3",
     "react-vertical-timeline-component": "^3.5.3",
     "recharts": "^2.12.7",
     "sonner": "^1.5.0",

@@ -1,8 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
-import { Button } from "./ui/button";
-import { Copy, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import { useState } from 'react';
+import { Check, Copy } from 'react-feather';
 
 const Navigation = () => {
   const { toast } = useToast();
@@ -31,23 +31,31 @@ const Navigation = () => {
         <div className="h-14 flex items-center gap-16">
           <div className="flex items-center gap-2">
             {isActive('/') && <span className="text-[#FEC6A1]">•</span>}
-            <Link to="/" className="text-sm font-medium hover:text-[#FEC6A1] transition-colors">
+            <RouterLink to="/" className="text-sm font-medium hover:text-[#FEC6A1] transition-colors">
               Tanawitch
-            </Link>
+            </RouterLink>
           </div>
           
           <div className="flex items-center gap-16">
             <div className="flex items-center gap-2">
               {isActive('/works') && <span className="text-[#FEC6A1]">•</span>}
-              <Link to="/works" className="nav-link">
+              <HashLink 
+                to="/works#works" 
+                scroll={(el) => el.scrollIntoView({ behavior: 'smooth' })}
+                className="nav-link"
+              >
                 Works
-              </Link>
+              </HashLink>
             </div>
             <div className="flex items-center gap-2">
               {isActive('/myself') && <span className="text-[#FEC6A1]">•</span>}
-              <Link to="/myself" className="nav-link">
+              <HashLink 
+                to="/myself#myself" 
+                scroll={(el) => el.scrollIntoView({ behavior: 'smooth' })}
+                className="nav-link"
+              >
                 Myself
-              </Link>
+              </HashLink>
             </div>
             <div>
               <button 
