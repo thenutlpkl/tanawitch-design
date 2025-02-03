@@ -1,12 +1,9 @@
 import { defineConfig, ConfigEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }: ConfigEnv) => ({
-  base: process.env.NODE_ENV === 'production' 
-    ? '/tanawitch-design/' 
-    : '/',
+  base: '/',
   
   build: {
     outDir: 'dist',
@@ -27,10 +24,7 @@ export default defineConfig(({ mode }: ConfigEnv) => ({
     port: 8080,
   },
 
-  plugins: [
-    react(),
-    mode === 'development' && componentTagger(),
-  ].filter(Boolean),
+  plugins: [react()],
 
   resolve: {
     alias: {

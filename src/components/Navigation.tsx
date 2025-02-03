@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Copy, Check } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
@@ -11,16 +10,15 @@ const Navigation = () => {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
-    const url = "https://tanawitch-design.vercel.app/";
-    navigator.clipboard.writeText(url);
+    navigator.clipboard.writeText(window.location.href);
     toast({
-      description: "Copied to clipboard!",
+      description: "Current page URL copied to clipboard!",
     });
     
     setIsCopied(true);
     setTimeout(() => {
       setIsCopied(false);
-    }, 2000); // Show check icon for 2 seconds
+    }, 2000);
   };
 
   const isActive = (path: string) => {
@@ -51,37 +49,14 @@ const Navigation = () => {
                 Myself
               </Link>
             </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Button 
-              size="sm" 
-              className="bg-[#FEC6A1]/20 text-[#FEC6A1] hover:bg-gradient-to-tr hover:from-[#FF6C5C] hover:to-[#FFF7D3] hover:text-white backdrop-blur-sm border border-[#FEC6A1]/20 rounded-full px-6 transition-all duration-500 ease-in"
-              onClick={() => window.open("https://drive.google.com/file/d/1lZpfp1wJf_XbO1Q0jsu01AHN9FXijJro/view?usp=sharing", "_blank")}
-            >
-              Resume
-            </Button>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className="relative">
-                    {isCopied ? (
-                      <Check 
-                        className="w-5 h-5 text-green-500 animate-ping" 
-                      />
-                    ) : (
-                      <Copy 
-                        onClick={handleCopy}
-                        className="w-5 h-5 text-muted-foreground hover:text-[#FEC6A1] cursor-pointer transition-colors" 
-                      />
-                    )}
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{isCopied ? "Copied!" : "Copy my url"}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <div>
+              <button 
+                onClick={handleCopy} 
+                className="text-sm hover:text-[#FEC6A1] transition-colors"
+              >
+                {isCopied ? <Check size={16} /> : <Copy size={16} />}
+              </button>
+            </div>
           </div>
         </div>
       </nav>

@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react';
+// @ts-ignore
+import React from 'react';
+
+// Import necessary libraries
+import { useQuery } from '@tanstack/react-query';
 import { supabase } from '../lib/supabaseClients';
 import { Project } from '../types/database.types';
 import { motion } from 'framer-motion';
@@ -12,35 +16,61 @@ const SkeletonCard = () => (
   </div>
 );
 
+// Function to fetch projects from Supabase
+const fetchProjects = async () => {
+  const { data, error } = await supabase
+    .from('projects')
+    .select('*')
+    .order('display_order', { ascending: true });
+
+  if (error) throw error;
+  return data || [];
+};
+
+// Works component
 const Works = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { 
+    data: projects, 
+    isLoading, 
+    error,
+    isError,
+    refetch 
+  } = useQuery<Project[]>({
+    queryKey: ['projects'],
+    queryFn: fetchProjects,
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: true,
+    refetchOnMount: true,
+    refetchOnReconnect: true,
+    retry: 3,
+  });
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
+  // Detailed error handling
+  if (isError) {
+    console.error('Failed to fetch projects:', error);
+    return (
+      <div className="text-center py-10">
+        <p>Failed to load projects</p>
+        <button 
+          onClick={() => refetch()} 
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
 
-  const fetchProjects = async () => {
-    try {
-      setIsLoading(true);
-      const { data, error } = await supabase
-        .from('projects')
-        .select('*')
-        .order('display_order', { ascending: true });
-
-      if (error) throw error;
-
-      if (data) {
-        setProjects(data);
-      }
-    } catch (error) {
-      setError('Error fetching projects');
-      console.error('Error:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+        {[1, 2, 3, 4].map((_, index) => (
+          <SkeletonCard key={index} />
+        ))}
+      </div>
+    );
+  }
 
   // Animation variants
   const containerVariants = {
@@ -64,27 +94,6 @@ const Works = () => {
     },
   };
 
-  // Error component with animation
-  if (error) {
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="container mx-auto px-4 py-16 text-center"
-      >
-        <div className="bg-red-500/10 p-4 rounded-lg">
-          <p className="text-red-500">Error: {error}</p>
-          <button
-            onClick={fetchProjects}
-            className="mt-4 px-4 py-2 bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors"
-          >
-            Try Again
-          </button>
-        </div>
-      </motion.div>
-    );
-  }
-
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-5xl mx-auto">
@@ -103,43 +112,32 @@ const Works = () => {
           animate="visible"
           className="grid grid-cols-2 md:grid-cols-4 gap-6"
         >
-          {isLoading
-            ? Array(8)
-                .fill(null)
-                .map((_, index) => (
-                  <motion.div
-                    key={`skeleton-${index}`}
-                    variants={itemVariants}
-                  >
-                    <SkeletonCard />
-                  </motion.div>
-                ))
-            : projects.map((project) => (
-                <motion.a
-                  key={project.id}
-                  variants={itemVariants}
-                  href={project.project_url}
-                  className="group relative aspect-square bg-card/50 rounded-3xl p-8 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hologram-glow backdrop-blur-sm border border-primary/10 overflow-hidden"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <img
-                    src={project.logo_url}
-                    alt={project.title}
-                    className="w-[100px] h-[100px] rounded-[6px] object-cover opacity-80 group-hover:opacity-30 transition-opacity duration-300"
-                  />
+          {projects?.map((project) => (
+            <motion.a
+              key={project.id}
+              variants={itemVariants}
+              href={project.project_url}
+              className="group relative aspect-square bg-card/50 rounded-3xl p-8 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hologram-glow backdrop-blur-sm border border-primary/10 overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <img
+                src={project.logo_url}
+                alt={project.title}
+                className="w-[100px] h-[100px] rounded-[6px] object-cover opacity-80 group-hover:opacity-30 transition-opacity duration-300"
+              />
 
-                  <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-                    <h4 className="relative z-10 text-lg font-medium text-white mb-2">
-                      {project.title}
-                    </h4>
-                    <p className="relative z-10 text-sm text-white/80 px-4 text-center">
-                      {project.description}
-                    </p>
-                  </div>
-                </motion.a>
-              ))}
+              <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+                <h4 className="relative z-10 text-lg font-medium text-white mb-2">
+                  {project.title}
+                </h4>
+                <p className="relative z-10 text-sm text-white/80 px-4 text-center">
+                  {project.description}
+                </p>
+              </div>
+            </motion.a>
+          ))}
         </motion.div>
       </div>
     </div>

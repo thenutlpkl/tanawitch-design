@@ -1,3 +1,4 @@
+import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,14 +7,24 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ParticleEffect from "./components/ParticleEffect";
 import CustomCursor from "./components/CustomCursor";
 import Navigation from "./components/Navigation";
-import Footer from "./components/Footer"; // Import Footer
+import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import Myself from "./pages/Myself";
 import Works from "./pages/Works";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      refetchOnWindowFocus: true,
+      refetchOnMount: true,
+      refetchOnReconnect: true,
+      retry: 3,
+    }
+  }
+});
 
-const App = () => (
+const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <div className="flex flex-col min-h-screen"> {/* Wrapper for sticky footer */}
