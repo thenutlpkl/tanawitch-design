@@ -12,10 +12,23 @@
   "routes": [
     {
       "src": "/(.*)",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "s-maxage=1, stale-while-revalidate"
+      },
       "dest": "/index.html"
+    },
+    {
+      "src": "/assets/(.*)",
+      "headers": {
+        "Cache-Control": "v-maxage=31536000, immutable"
+      }
     }
   ],
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "vite"
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }

@@ -13,6 +13,9 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       assetsDir: 'assets',
       sourcemap: true,
       rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html')
+        },
         output: {
           manualChunks: undefined,
           assetFileNames: isProduction 
